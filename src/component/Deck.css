@@ -1,0 +1,8 @@
+.deck {
+    border: 1px solid black;
+    height: 640px;
+    margin: 10px;
+    display: flex;
+    flex: 50%;
+    max-width: 550px;
+}
