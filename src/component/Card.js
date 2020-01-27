@@ -7,7 +7,7 @@ function Card ({ card, isflipped, deckId, handleClick, disabled }) {
   const src = isflipped ? card.image : '/back.jpeg'
 
   return (
-    <div className='card col-2' onClick={e => isflipped || disabled ? null : handleClick(deckId, card)}>
+    <div className='card col-3' onClick={e => isflipped || disabled ? null : handleClick(deckId, card)}>
       <img src={src} alt='Card' />
     </div>
   )

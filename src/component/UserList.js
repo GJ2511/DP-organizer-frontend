@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function UserList ({ users }) {
+function UserList ({ users, player }) {
   return (
     <table className='table'>
       <thead>
@@ -12,14 +12,21 @@ function UserList ({ users }) {
         </tr>
       </thead>
       <tbody>
+        <tr key={player.id}>
+          <th scope='row'>{0}</th>
+          <td>{player.score}</td>
+          <td>{player.name}</td>
+        </tr>
         {users.map((user, index) => {
-          return (
-            <tr key={user.id}>
-              <th scope='row'>{index + 1}</th>
-              <td>{user.score}</td>
-              <td>{user.name}</td>
-            </tr>
-          )
+          if (user.id !== player.id) {
+            return (
+              <tr key={user.id}>
+                <th scope='row'>{index + 1}</th>
+                <td>{user.score}</td>
+                <td>{user.name}</td>
+              </tr>
+            )
+          }
         })}
       </tbody>
     </table>
@@ -27,7 +34,8 @@ function UserList ({ users }) {
 }
 
 UserList.propTypes = {
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  player: PropTypes.object.isRequired
 }
 
 export default UserList

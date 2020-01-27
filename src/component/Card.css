@@ -1,7 +1,6 @@
 .card {
-    margin: 5px;
+    margin: 10px;
 }
-
-.card img {
-    height: 60px;
+.card, .card img {
+    height: 200px;
 }

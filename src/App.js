@@ -21,14 +21,18 @@ function App () {
     })
   }
 
+  const updateCurrentPlayerScore = score => {
+    setPlayer({...player, score })
+  }
+
   if (loading) return <Loading />
 
   if (player === null) return <Register name={name} setName={setName} handleSubmit={handleSubmit} />
 
   return (
     <div className='container'>
-      <DeckContainer playerId={player.id} />
-      <ListContainer />
+      <DeckContainer playerId={player.id} updateCurrentPlayerScore={updateCurrentPlayerScore} />
+      <ListContainer player={player} />
     </div>
   )
 }

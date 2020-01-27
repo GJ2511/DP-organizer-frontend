@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import Card from './Card'
-import DeckService from '../service/deck.service'
 
 import './Deck.css'
 
-function Deck ({ deckId, handleClick, flipped, solved, disabled }) {
-  const [cards, setCards] = useState([])
-
-  useEffect(() => {
-    if (deckId === null) return
-
-    DeckService.getCards(deckId).then(({ cards }) => {
-      setCards(cards)
-    }).catch(err => {
-      console.error(err)
-    })
-  }, [deckId])
-
+function Deck ({ deckId, cards, handleClick, flipped, solved, disabled, loading }) {
   const renderCard = () => {
     const cardList = cards.map((card) => {
       let isflipped = false
@@ -41,17 +28,19 @@ function Deck ({ deckId, handleClick, flipped, solved, disabled }) {
 
   return (
     <div className='deck row overflow-auto'>
-      {!deckId ? 'Loading...' : renderCard()}
+      {loading ? 'Loading...' : renderCard()}
     </div>
   )
 }
 
 Deck.propTypes = {
   deckId: PropTypes.string,
+  cards: PropTypes.array.isRequired,
   disabled: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
   flipped: PropTypes.object.isRequired,
-  solved: PropTypes.array.isRequired
+  solved: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default Deck

@@ -9,10 +9,10 @@ export default class DeckService {
     return getDeck
   }
 
-  static async getCards (deckId) {
+  static async getCards (deckId, count = 9) {
     const apiService = new ApiService('https://deckofcardsapi.com/api/deck')
 
-    const getCards = await apiService.get(`/${deckId}/draw/?count=52`)
+    const getCards = await apiService.get(`/${deckId}/draw/?count=${count}`)
 
     return getCards
   }
